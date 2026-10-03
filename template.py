@@ -2,9 +2,9 @@
 RECORD CHECK  -  my version
 ===========================
 
-Name  : Ashira Bibi Awoodun
+Name  : Ashira Awoodun
 Lane  :  AI 
-Date  : 30 September 2026
+Date  : 03 October 2026
 
 Run it:   python template.py
 
@@ -12,67 +12,67 @@ Work through the numbered sections in order. Each one tells you what it must do.
 Delete these instructions as you replace them with your code.
 """
 
-# ==================================================================== INPUT
-# 1. Ask the user for your three values.
-#
-#    - the first is TEXT      (a name, a hostname, an IP)  -> no conversion needed
-#    - the second is a NUMBER (use float(), not int())
-#    - the third  is a NUMBER (use float(), not int())
-#
-#    Remember: input() always gives back text.
-
-label = ""      # : replace with an input() call
-first = 0.0     # : replace with an input() call, converted
-second = 0.0    # : replace with an input() call, converted
-
-dataset_name= input ("enter dataset name")
-rows_loaded = int(input ("enter rows loaded"))
-rows_expected = int(input("enter rows expected"))
-
-print ("="*34)
-print ("dataset name - ", dataset_name)
-print("="* 34)
-
-print(f"{'rows_loaded' :<15} = {rows_loaded:>15.2f}")
-print(f"{'rows_expected' :<15} = {rows_expected:>15.2f}")
-
-difference = rows_expected - rows_loaded 
-print(f"{'Difference' :<15} = {difference:>+15.2f}")
-percent = rows_loaded / rows_expected * 100
-print(f"{'Percent' :<15} = {percent:>15.2f} %")
-
-percent_missing = difference/ rows_expected *100
-print(f"{'Percent missing':<15} = {percent_missing:>15.2f} %")
-print ("Percent missing is used to calculate the percentage of rows missing over the total expected rows")
-
-print("=" * 34)
-
-# ================================================================== PROCESS
-# 2. Work out what you were NOT given.       [Typical and above]
-#
-#    - difference : how far the first is from the second
-#    - percent    : the first as a percentage of the second
-#
-#    Do not type the answers. Calculate them.
-
-
-# =================================================================== OUTPUT
-# 3. Print the report.
-#
-#    Threshold : print the three values you were given, inside a border
-#    Typical   : add difference and percent, 2 decimal places, right-aligned
-#    Excellent : difference always shows its sign, plus one line of your own
-#
-#    Useful:   f"{value:>10.2f}"    right-aligned, 2 decimal places
-#              f"{value:>+10.2f}"   the same, but always shows the sign
 
 
 
 
+#how many are over limit at start? 0 are over limit 
+
+over_limit_count = 0
+#i need to input a label
+
+label = input("Enter label or 'quit' to stop")
+
+
+#when label = quit, the code will stop, when it is NOT EQUAL TO QUIT, IT WILL CONTINUE
+while label != "quit" :
+
+    print("=" * 34)
+    print(f"  RECORD CHECK  -  {label}") #label becomes my dataset name hence i erase dataset name
+    print("=" * 34)
+
+    rows_loaded = int(input("enter rows loaded"))
+    rows_expected = int(input("enter rows expected"))
+
+    difference = int (rows_expected - rows_loaded)
+    percent = float(rows_loaded / rows_expected *100)
+
+    print ("="  * 34)
+    print ( "Dataset name - ", label)
+    print ("="* 34)
+
+
+    print (f"{'Rows loaded':<20} : {rows_loaded:>14.2f}")
+    print (f"{'Rows expected':<20} : {rows_expected:>14.2f}")
+    print (f"{'Difference':<20} : {difference:>14.2f}")
+    print (f"{'Percent':<20} : {percent:>14.2f} %" )
+
+    if percent >= 100:
+        print (f"{'Status':<20} : {'OVER LIMIT':>14}")
+        #because we need to record OVER LIMIT count, i need to add an action so that i get the total at the end
+        over_limit_count = over_limit_count + 1
+
+    elif percent >= 90:
+        print (f"{'Status':<20} : {'WARNING':>14}")
+
+    else:
+        print (f"{'Status':<20} : {'OK':>14}")
+
+    print("=" * 34)
+
+#now that the first round of label has been checked, we need to create a new round, hence ask for another label 
+
+    label = input("Enter label or 'quit' to stop")
+
+# Need to record how many rounds were OVER LIMIT using the over_limit_count at the start
+
+print(f"Records that came back OVER LIMIT: {over_limit_count}")
+
+#when i input the word "quit", the loop does not stop. Cannot find mistake. 
+ 
 # ==========================================================================
-# 4. Before you finish:
+# 5. Before you finish:
 #
 #    [ ] Run it three times with different numbers
-#    [ ] Run it with a total of 0 and write the error in your journal
+#    [ ] Run it with a total of 0 and note the error (do not fix it yet)
 #    [ ] Check every variable name says what it holds
-#    [ ] Show it to the person next to you
