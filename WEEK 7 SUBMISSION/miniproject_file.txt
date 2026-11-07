@@ -1,0 +1,6 @@
+ survey_2026, rating=4, age=23
+survey_2027,rating=10, age=50
+Survey_2028,  rating=15,age=20
+   survey_2029, Rating=20,age=14
+    survey_2030,rating=13, age=10
+survey_2031, Rating=high, age=13
