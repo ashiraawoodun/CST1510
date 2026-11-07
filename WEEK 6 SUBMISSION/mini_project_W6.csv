@@ -1,0 +1,6 @@
+label,value,limit,percent,status
+survey_2026,1187,1200,98.92,WARNING
+survey_2027,400,750,53.33,OK
+survey_2028,1400,620,225.81,OVER LIMIT
+survey_2029,570,260,219.23,OVER LIMIT
+survey_2030,1400,2700,51.85,OK
