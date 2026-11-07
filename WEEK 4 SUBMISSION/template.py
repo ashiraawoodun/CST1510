@@ -52,19 +52,23 @@ overlimit_count = 0
 
 records = load_records("my_records.txt")
 
-for record in records:
-    difference, percent = check_record(record["value"], record["limit"])
-    if percent >= 100:
-        status = "OVER LIMIT"
-        overlimit_count += 1
+with open ("miniproject_results.txt", "w") as f:
+    for record in records:
+        difference, percent = check_record(record["value"], record["limit"])
+        if percent >= 100:
+            status = "OVER LIMIT"
+            overlimit_count += 1
 
-    elif percent>= 90:
-        status = "WARNING"
+        elif percent>= 90:
+            status = "WARNING"
 
-    else:
-        status = "OK"
+        else:
+            status = "OK"
 
     
-    print_report (record["label"], record["value"], record["limit"], difference,percent, status)
+        print_report (record["label"], record["value"], record["limit"], difference,percent, status)
+        #write record's label and status to the file miniproject_results.txt as one line
+        f.write (f"{record["label"]}, {status}\n")
 
 print (f"RECORDS OVER LIMIT : {overlimit_count}")
+#
